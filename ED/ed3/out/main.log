@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.10.25)  23 NOV 2023 16:48
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.10.25)  4 DEC 2023 21:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -703,7 +703,7 @@ Package caption Info: Standard document class detected.
 \sf@top=\skip67
 \sf@bottom=\skip68
 )
-(F:/JetBrainsProj/ClionProject/Tex/ED/ed_3/out/main.aux)
+(F:/JetBrainsProj/TexProject/ED/ed3/out/main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
@@ -872,15 +872,14 @@ File: ../figures//12.png Graphic file (type bmp)
 <../figures//12.png>
 File: ../figures//16.png Graphic file (type bmp)
 <../figures//16.png>
- [5] [6] [7] (F:/JetBrainsProj/ClionProject/Tex/ED/ed_3/out/main.aux) ) 
+ [5] [6] [7] (F:/JetBrainsProj/TexProject/ED/ed3/out/main.aux) ) 
 Here is how much of TeX's memory you used:
  11146 strings out of 476683
- 270729 string characters out of 5807574
+ 270673 string characters out of 5807574
  1862012 words of memory out of 5000000
  31217 multiletter control sequences out of 15000+600000
  530545 words of font info for 122 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  89i,10n,97p,367b,472s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on F:/JetBrainsProj/ClionProject/Tex/ED/ed_3/out/main.pdf (7 pag
-es).
+Output written on F:/JetBrainsProj/TexProject/ED/ed3/out/main.pdf (7 pages).
