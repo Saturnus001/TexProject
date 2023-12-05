@@ -1,0 +1,109 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,lmodern,mathabx}
+\usepackage[fontset=founder]{ctex}
+\usepackage{anyfontsize}
+
+\title{Homework 9}
+\author{姚苏航\\ PB22061220}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{ }
+
+\begin{equation}
+    \begin{aligned}
+        &\hbox{不妨设}Z_1=\alpha X+\beta Y,Z_2=\alpha X-\beta Y\\\nonumber
+        &E(Z_1)=(\alpha+\beta)\mu,E(Z_2)=(\alpha-\beta)\mu\\
+        &Var(Z_1)=Var(Z_2)=(\alpha^2+\beta^2)\sigma^2\\
+        &E(Z_1Z_2)=E(\alpha^2X^2-\beta^2Y^2)=(\alpha^2-\beta^2)(\sigma^2+\mu^2)\\
+        &Cov(\alpha X+\beta Y,\alpha X-\beta Y)=E(Z_1Z_2)-E(Z_1)E(Z_2)\\
+        &=(\alpha^2-\beta^2)(\sigma^2+\mu^2)-\mu^2(\alpha^2-\beta^2)\\
+        &=(\alpha^2-\beta^2)\sigma^2=0\\
+        &\implies\alpha=\pm\beta
+    \end{aligned}
+\end{equation}
+
+\section{ }
+\subsection{ }
+\begin{equation}
+    \begin{aligned}
+        \because&S=2\times2\times\frac{1}{2}=2\\\nonumber
+        \therefore&f(X,Y)=\frac{1}{2}\\
+        &E(X,Y)=\iint_{|x|+|y|\le1}xy \frac{1}{2} dxdy=\frac{1}{2}\int_{-1}^{1}\int_{-1+|y|}^{1-|y|}xydxdy\\
+        =&\frac{1}{2}\int_{-1}^{1}0dy=0
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        &f_x(x)=\int_{|y|<1-|x|}\frac{1}{2}dy=1-|x|\\\nonumber
+        &f_Y(y)=1-|y|\\
+        &E(x)=\int_{-1}^{1}xf_X(x)dx=0\\
+        &E(y)=\int_{-1}^{1}yf_y(y)dy=0\\
+        &Cov(X,Y)=E(XY)-E(X)E(Y)=0
+    \end{aligned}
+\end{equation}
+
+\subsection{}
+
+\begin{equation}
+    \begin{aligned}
+        \because&f(x,y)=\frac{1}{2}\neq f_X(x)f_Y(y)=(1-|x|)(1-|y|)\\\nonumber
+        \therefore&\hbox{ X与Y不相互独立}
+    \end{aligned}
+\end{equation}
+
+\section{ }
+
+\noindent{选$C$.}
+
+\noindent{(A)因为X、Y相互独立且服从标准正态分布, (X,Y)服从二元正态分布}
+
+\noindent{(B)独立正态分布的商为柯西分布}
+
+\noindent{(C)X,Y不能准确对应联合分布函数,因而不能推出相互独立}
+
+\noindent{(D)$X+Y\sim N(0,2),\ X-Y\sim N(0,2);\ Cov(X+Y,X-Y)=0\implies$相互独立}
+
+\section{ }
+
+\begin{equation}
+    \begin{aligned}
+         H(x)=&-\int_{-\infty}^{+\infty}\lambda e^{\lambda x}I_{[0,\infty)}(x)ln(\lambda e^{-\lambda x})dx\\\nonumber
+         =&-\int_0^{+\infty}\lambda ln\lambda e^{-\lambda x}dx+\int_0^{+\infty}\lambda^2xe^{-\lambda x}dx\\
+         =&ln\lambda e^{-\lambda x}|_{x\to0}^{x\to+\infty}+(-e^{-\lambda x}-\lambda xe^{-\lambda x})|_{x\to0}^{x\to+\infty}\\
+         =&(ln\lambda-\lambda x-1)e^{-\lambda x}|_{x\to0}^{x\to+\infty}\\
+         =&1-ln\lambda
+    \end{aligned}
+\end{equation}
+
+\section{ }
+\subsection{}
+
+\begin{equation}
+    \begin{aligned}
+        E(F_n(x))&=\frac{1}{n}E(\sum_{k=1}^{n}I(U_k\le x))=\frac{1}{n}\sum_{k=1}^{n}E(I(U_k\le x))\\\nonumber
+        &=\frac{1}{n}\sum_{k=1}^{n}x=x\\
+        D(F_n(x))&=E(F_n(x)-x)^2\\
+        &=E(F_n(x))^2-x^2\\
+        &=E(\sum_{k=1}^{n}I(U_k\le x))^2-x^2\\
+        &=\frac{1}{n^2}E[\sum_{k=1}^{n}\sum_{j=1}^{n}I(U_k\le x)I(U_j\le x)]\\
+        &=\frac{1}{n^2}[nx+(n^2-n)x^2]-x^2\\
+        &=\frac{1}{n}(x-x^2)
+    \end{aligned}
+\end{equation}
+
+\subsection{}
+\begin{equation}
+    \begin{aligned}
+        Cov(F_n(x),F_n(y))=&E(XY)-E(X)E(Y)\\\nonumber
+        =&\frac{1}{n^2}E[\sum_{k=1}^{n}\sum_{j=1}^{n}I(U_k\le x)I(U_j\le x)]-xy\\
+        =&\frac{1}{n^2}[nmin(x,y)+(n^2-n)-xy]-xy\\
+        =&\frac{1}{n}[min(x,y)-xy]
+    \end{aligned}
+\end{equation}
+
+\end{document}

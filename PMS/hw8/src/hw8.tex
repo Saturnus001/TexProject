@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage{graphicx,amsmath,lmodern,ctex,mathabx} % Required for inserting images
+\usepackage{anyfontsize}
+
+\title{HW8}
+\author{姚苏航 PB22061220}
+
+\begin{document}
+
+\maketitle
+
+\section{ }
+\begin{equation}
+    \begin{aligned}
+        E(min\{|X|,1\}) & =\int_{-\infty}^{+\infty}min\{|x|,1\}f(x)dx \\
+        &= \int_{-\infty}^{+\infty}min\{|X|,1\}\frac{1}{\pi(1+x^2)}dx\nonumber\\
+        &=\int_{|x|\le1}|x|\frac{1}{\pi(1+x^2)}dx+\int_{|x|>1}\frac{1}{\pi(1+x^2)}dx\\
+        &=\int_{-1}^{1}|x|\frac{1}{\pi(1+x^2)}dx+\int_{-\infty}^{-1}\frac{1}{\pi(1+x^2)}dx
+        +\int_{1}^{+\infty}\frac{1}{\pi(1+x^2)}dx\\
+        &=\frac{1}{\pi}ln2+\frac{1}{2}
+    \end{aligned}
+\end{equation}
+
+\section{ }
+
+\begin{equation}
+    \begin{aligned}
+        &X\sim P(2),E(X)=Var(X)=\frac{1}{2}\\
+        &Y\sim U(-3,3),E(Y)=0,Var(Y)=\frac{(3-(-3))^2}{12}=3\\
+        &Var(XY)=E(X^2Y^2)-[E(XY)]^2\\
+        &\qquad\qquad\ =E(X)^2E(Y)^2-[E(X)E(Y)]^2\\
+        &\qquad\qquad\ =[E(X)^2+Var(X)][E(Y)^2+Var(Y)]\\\nonumber
+        &\qquad\qquad\ =(2+4)(3+0)=18\\
+        \therefore&Var(XY)=18
+    \end{aligned}
+\end{equation}
+
+\section{ }
+
+(1)
+\begin{equation}
+    \begin{aligned}
+        \because &XY\mbox{相互独立,且}X\sim P(\lambda),Y\sim P(\mu)\implies X+Y\sim P(\lambda+\mu)\\\nonumber
+        \therefore&P(X=k|X+Y=m)=\frac{P(X=k,X+Y=m)}{P(X+Y=m)}\\
+        &\qquad\qquad\qquad\qquad\quad\ \ \,=\frac{\frac{\lambda^k\mu^{m-k}e^{-\mu-\lambda}}{k!(m-k)!}}{\frac{(\lambda+\mu)^me^{-\mu-\lambda}}{m!}}\\
+        &\qquad\qquad\qquad\qquad\quad\ \ \,=C_m^k(\frac{\lambda}{\lambda+\mu})^k(\frac{\mu}{\lambda+\mu})^{m-k},\ k\le min\{m,n\}\\
+        \mbox{且}&E(X|X+Y=m)=\sum_{k=0}^mP(X=k|X+Y=m)k=\frac{m\mu}{\lambda+\mu}
+    \end{aligned}
+\end{equation}
+
+(2)
+\begin{equation}
+    \begin{aligned}
+        \because &XY\mbox{相互独立,且}X,Y\sim B(n,p)\implies X+Y\sim B(2n,p)\\\nonumber
+        \therefore &P(X+Y=m)=C_{2n}^m(1-p)^{(2n-m)}p^{m}\\
+        &P(X=k|X+Y=m)=\frac{P(X=k,X+Y=m)}{P(X+Y=m)}\\
+        &\qquad\qquad\qquad\qquad\quad\ \ \,=\frac{C_n^kp^k(1-p)^{n-k}C_n^{m-k}p^{m-k}(1-p)^{n-m+k}}
+        {C_{2n}^m(1-p)^{(2n-m)}p^{m}}\\
+        &\qquad\qquad\qquad\qquad\quad\ \ \,=\frac{C_n^kC_n^{m-k}}{C_{2n}^m},\ k\le min\{m,n\}\\
+        \mbox{且}&E(X|X+Y=m)=\sum_{k=0}^mP(X=k|X+Y=m)k=\frac{m}{2}
+    \end{aligned}
+\end{equation}
+
+\section{ }
+
+(1)
+\begin{equation}
+    \begin{aligned}
+        &P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}\quad k=-0,1,2,\cdots,n\\\nonumber
+        &M_X(s)=\sum_{k=0}^ne^ks\binom{n}{k}p^k(1-p)^{n-k}\\
+        &\qquad\ \ =\sum_{k=0}^n\binom{n}{k}(pe^s)^k(1-p)^{n-k}\\
+        &\qquad\ \ =(pe^s+1-p)^n
+    \end{aligned}
+\end{equation}
+
+(2)
+\begin{equation}
+    \begin{aligned}
+        &P(X=k)=\frac{e^{-\lambda}\lambda^k}{k!}\quad k=0,1,2,\cdots,n\\\nonumber
+        &M_X(s)=\sum_{k=0}^n\frac{e^{-\lambda}\lambda^k}{k!}e^{ks}\\
+        &\qquad\ \ =e^{-\lambda}\sum_{k=0}^n\frac{(\lambda e^s)^k}{k!}\\
+        &\qquad\ \ =e^{\lambda(e^s-1)}
+    \end{aligned}
+\end{equation}
+
+(3)
+\begin{equation}
+    \begin{aligned}
+        &f(x)=\lambda e^{-\lambda x}I_{[0,+\infty)}(x)\\\nonumber
+        &M_X(s)=\int_0^{+\infty}\lambda e^{-\lambda x}e^{sx}dx\\
+        &\qquad\ \ =\lambda\int_0^{+\infty}e^{(s-\lambda)x}dx\\
+        &\qquad\ \ =\frac{\lambda}{t-\lambda}(e^{(t-\lambda)x}|_0^{+\infty})\\
+        &t<\lambda\mbox{时},M_X(s)=\frac{\lambda}{\lambda-s}
+    \end{aligned}
+\end{equation}
+
+(4)
+\begin{equation}
+    \begin{aligned}
+        &M_X(s)=\int_{-\infty}^{+\infty}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}e^{sx}\\\nonumber
+        &\qquad\ \ =\frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{+\infty}e^{-\frac{(x-\mu)^2}{2\sigma^2}+sx}\\
+        &\mbox{令}w=\frac{x-\mu}{\sigma}\\
+        &M_X(s)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}e^{\frac{w^2}{2}+s(w\sigma+\mu)}dw\\
+        &\qquad\ \ =e^{\mu s+\frac{s^2\sigma^2}{2}}\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}e^{-\frac{(w-s\sigma)^2}{2}}dw\\
+        &\qquad\ \ =e^{\mu s+\frac{s^2\sigma^2}{2}}\frac{1}{\sqrt{2\pi}}\sqrt{2\pi}\\
+        &\qquad\ \ =e^{\mu s+\frac{s^2\sigma^2}{2}}
+    \end{aligned}
+\end{equation}
+
+\section{ }
+
+(1)
+\begin{equation}
+    \begin{aligned}
+        &Z_1=\alpha X+\beta Y,Z_2=\alpha X-\beta Y\\\nonumber
+        &E(Z_1)=(\alpha+\beta)\mu,E(Z_2)=(\alpha-\beta)\mu\\
+        &Var(Z_1)=Var(Z_2)=(\alpha^2+\beta^2)\sigma^2\\
+        &E(Z_1Z_2)=E(\alpha^2X^2-\beta^2Y^2)=(\alpha^2-\beta^2)(\sigma^2+\mu^2)\\
+        &Cov(Z_1,Z_2)=E(Z_1Z_2)-E(Z_1)E(Z_2)\\
+        &\qquad\qquad\quad\;=(\alpha^2-\beta^2)(\sigma^2+\mu^2)-\mu^2(\alpha^2-\beta^2)\\
+        &\qquad\qquad\quad\;=(\alpha^2-\beta^2)\sigma^2
+    \end{aligned}
+\end{equation}
+
+(2)
+\begin{equation}
+    \begin{aligned}
+        &\mbox{令}\,Cov(Z_1,Z_2)=0\\
+        &\implies|\alpha|=|\beta|\nonumber
+    \end{aligned}
+\end{equation}
+
+\section{ }
+
+\begin{equation}
+    \begin{aligned}
+         \because&\mbox{事件}A\mbox{服从二项分布}(X\sim B(n,p)) \\\nonumber
+         &\implies X\sim B(500,0.2)\\
+         &E(X)=100,D(X)=500\times0.2\times0.8=80\\
+         &P(80<X<120)=P(|X-100|<20)\ge1-\frac{80}{20^2}=\frac{4}{5}\\
+         \therefore&P(80<X<120)=\frac{4}{5}
+    \end{aligned}
+\end{equation}
+
+\end{document}

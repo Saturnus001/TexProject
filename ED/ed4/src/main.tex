@@ -26,6 +26,9 @@
     \maketitle
 
 
+    \vspace{1cm}
+
+
     \section{实验目的\cite{ed4}}\label{sec:}
 
     \noindent{1.掌握放大器静态工作点的测量与调试方法。}
@@ -35,73 +38,164 @@
     \noindent{3.掌握静态工作点与输出波形失真的关系，了解最大不失真输出电压的测量方法。}
 
 
+    \vspace{1cm}
+
+
     \section{实验原理}\label{sec:10}
     \begin{center}
         \includegraphics[height=150pt]{AC}\\
         {\small 图一:共射极单管放大电路}
     \end{center}
 
-    {{图一为电阻分压式工作点稳定单管放大器实验电路图。其中偏置电路采用$R_{B1}$和$R_{B2}$组成的分压电路。$V_{CC}$作为集电极电源为电路提供能量，保证发射结正偏、集电结反偏。集电极电阻$R_C$将变化的电流转变成变化的电压，是电路具有电压放大能力。发射极电阻$R_E$引入负反馈稳定电路，稳定放大器静态工作点。耦合电容$C_1$和$C_2$隔离输入输出与电流直流的联系，同时能使信号顺利输入输出。}}
+    {{图一为电阻分压式工作点稳定单管放大器实验电路图。
+    其中偏置电路采用$R_{B1}$和$R_{B2}$组成的分压电路。
+    $V_{CC}$作为集电极电源为电路提供能量，保证发射结正偏、集电结反偏。
+    集电极电阻$R_C$将变化的电流转变成变化的电压，是电路具有电压放大能力。
+    发射极电阻$R_E$引入负反馈稳定电路，稳定放大器静态工作点。
+    耦合电容$C_1$和$C_2$隔离输入输出与电流直流的联系，同时能使信号顺利输入输出。}}
+
+
+    \vspace{1cm}
 
 
     \section{实验仪器}\label{sec:2}
-    \noindent{交流电压表，数字万用表，示波器，电路元件箱，信号发生器}
+    \noindent{交流毫伏表，数字万用表，示波器，电路元件箱，信号发生器}
+
+
+    \vspace{1cm}
 
 
     \section{测量静态工作点}\label{sec:3}
 
-    \subsection{实验内容}\label{subsec:2}
+    \subsection{实验原理}\label{subsec:2}
     \begin{center}
         \includegraphics[height=150pt]{exp2}\\
         {\small 图二:实验电路}
     \end{center}
-    {{测量放大器的静态工作点，应在输入信号$U_i=0$的情况下进行，即将放大器输入端与地端短接，然后选用量程合适的数字万用表，分别测量晶体管的集电极电流$I_c$以及各电极对地的电位$U_B$、$U_C$和$U_E$。}}
-    {{一般实验中，为了避免断开集电极，所以采用测量电压，然后算出$I_C$的方法，例如，只要测出$U_E$，即可求出$I_C$}}
+
+    {{测量放大器的静态工作点，应在输入信号$U_i=0$的情况下进行，
+    即将放大器输入端与地端短接，然后选用量程合适的数字万用表，
+    分别测量晶体管的集电极电流$I_c$以及各电极对地的电位$U_B$、$U_C$和$U_E$。}}
+
+    {{一般实验中，为了避免断开集电极，所以采用测量电压，然后算出$I_C$的方法。
+    例如，只要测出$U_E$，即可求出$I_C$}}
+
     \begin{equation}
         I_C\approx I_E=\frac{U_E}{R_E}\label{eq:equation}
     \end{equation}
 
-    {{也可根据下式}}
+    {{也可根据下式得到:}}
 
     \begin{equation}
-        I_C=\frac{V_{CC}-U_C}{R_C}\\
-        \mbox{同时可以得到:}U_{BE}=U_B-U_E\\
-        U_{CE}=U_C-U_E\label{eq:equation2}
+        \begin{aligned}
+            I_C&=\frac{V_{CC}-U_C}{R_C}\\
+            U_{BE}&=U_B-U_E\\
+            U_{CE}&=U_C-U_E\label{eq:equation2}
+        \end{aligned}
     \end{equation}
 
-    \subsection{实验数据与误差分析}\label{subsec:3}
+    \subsection{实验内容}\label{subsec:}
+    {{按照图一中的电路接线，打开交流开关，调节$R_W$，
+    使$I_C=2.0mA$(即$U_E=2.4V$)，
+    用万用表测量$U_B$、$U_C$、$U_E$和$R_{B2}$。}}
+
+    \subsection{实验数据}\label{subsec:3}
+    {{实验数据记录如下表所示:}}
+
+    \begin{table}[htbp]
+        \centering
+        \caption{静态工作点测量数据}
+        \begin{tabular}{|c|c|c|c|c|c|c|}
+            \hline
+            \multicolumn{4}{|c|}{测量值} & \multicolumn{3}{|c|}{计算值} \\
+            \hline
+            $U_B(V)$ & $U_E(V)$ & $U_C(V)$ & $R_{B2}(K\Omega)$ & $U_{BE}(V)$ & $U_{CE}(V)$ & $I_C(mA)$ \\
+            \hline
+            3.008    & 2.403    & 7.147    & 65.42K            & 0.605       & 4.744       & 2.003     \\
+            \hline
+        \end{tabular}\label{tab:table2}
+    \end{table}
 
     \subsection{注意事项}\label{subsec:4}
+    {{静态工作点的测量条件：输入接地(即$U_i=0$)}}
+
+
+    \vspace{1cm}
 
 
     \section{测量电压放大倍数}\label{sec:4}
 
     \subsection{实验原理}\label{subsec:5}
+    {{调节放大器到静态工作点时，然后加入输入电压$u_i$，在输出电压$u_o$不失真的情况下，
+    用交流毫伏表或者示波器测出$u_i$和$u_o$的有效值$U_i$和$U_o$，则}}
+
+    \begin{equation}
+        A_u=\frac{U_o}{U_i}\label{eq:equation3}
+    \end{equation}
 
     \subsection{实验内容}\label{subsec:6}
+    {{调节频率为$1KHz$的正弦波作为输入信号$u_i$。
+    同时用双踪示波器观察放大器输入电压$u_i$和输出电压$u_o$的波形，
+    在$u_o$波形不失真的条件下，用毫伏表或者示波器测量开路和带载两种情况下$u_o$的有效值，
+    并用双踪示波器观察$u_o$和$u_i$的相位关系。}}
 
-    \subsection{实验数据与误差分析}\label{subsec:7}
+    \subsection{实验数据}\label{subsec:7}
+    {{记录实验数据如下表：}}
+    \begin{table}[htbp]
+        \centering
+        \caption{$I_c=2.0mA\quad U_i=10mV$(有效值)}
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+            $R_C(K\Omega)$ & $R_L(K\Omega)$ & $U_o(V)$ & $A_u$ \\
+            \hline
+            2.4            & 2.4            & 0.675    & 67.5  \\
+            \hline
+            2.4            & $\infty$       & 1.359    & 135.9 \\
+            \hline
+        \end{tabular}\label{tab:table3}
+    \end{table}
+
+    {{观察记录的$u_o$和$u_i$波形如图三所示：}}
+
     \begin{center}
-        \includegraphics[height=130pt]{ref}\\
+        \includegraphics[height=100pt]{ref}\\
         {\small 图三:$u_o$和$u_i$的相位关系}
     \end{center}
 
-    \subsection{注意事项}\label{subsec:8}
+    \vspace{1cm}
 
 
     \section{测量输入电阻和输出电阻}\label{sec:5}
+
+    \subsection{实验原理}\label{subsec:9}
+    {{输入电阻：串联电阻法。在输入回路串联取样电阻$R$,
+    直接测量取样电阻$R$两端的信号电压：$U_s$、$U_i$。
+    根据输入电阻的定义可得：}}
+    \begin{equation}
+        R_i=\frac{U_i}{I_i}=\frac{U_i}{U_s-U_i}R\label{eq:equation4}
+    \end{equation}
+
+    {{输出电阻：两次电压法。先测量开路电压$U_o$，再测量接入负载后的输出电压$U_L$，则：}}
+    \begin{equation}
+        R_o=(\frac{U_o}{U_L}-1)R_L\label{eq:equation5}
+    \end{equation}
+
+    \subsection{实验内容}\label{subsec:10}
     \begin{center}
         \includegraphics[height=80pt]{R}\\
         {\small 图四:实验电路}
     \end{center}
-
-    \subsection{实验原理}\label{subsec:9}
-
-    \subsection{实验内容}\label{subsec:10}
+    {{按图四接线，取$R=2K\Omega$,置$R_C=2.4K\Omega$、$R_L=2.4K\Omega$、$I_C=2.0mA$。
+    输入$f=1KHz$的正弦信号$u_s$，在输出电压$u_o$不失真的条件下，
+    用毫伏表或者示波器测量$U_s$、$U_i$，根据公式\ref{eq:equation4}求出$R_i$。}}
+    {{输出电阻$R_o$可根据公式\ref{eq:equation5}求出。}}
 
     \subsection{实验数据与误差分析}\label{subsec:11}
 
     \subsection{注意事项}\label{subsec:12}
+    {{必须保持$R_L$接入电路前后输入信号的大小不变。}}
+
+    \vspace{1cm}
 
 
     \section{测量幅频特性曲线}\label{sec:6}
@@ -114,8 +208,8 @@
 
     \subsection{实验内容}\label{subsec:14}
 
-    \subsection{实验数据与误差分析}\label{subsec:15}
-    \begin{table}[!t]
+    \subsection{实验数据}\label{subsec:15}
+    \begin{table}[htbp]
         \centering
         \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}|l|l|l|l|l|l|l|l|}
             \hline
@@ -174,10 +268,13 @@
     \subsection{注意事项}\label{subsec:16}
 
 
+    \vspace{1cm}
+
+
     \section{观察静态工作点对输出波形失真的影响}\label{sec:7}
 
     \subsection{实验原理}\label{subsec:17}
-    \begin{figure*}[htb]
+    \begin{figure*}[htbp]
         \centering
         \subfloat[饱和失真与截止失真]{\includegraphics[height=100pt]{ID2}}
         \subfloat[电路参数对静态工作点影响]{\includegraphics[height=100pt]{IU}}\\
@@ -190,7 +287,7 @@
         {\small 图八:实验电路}
     \end{center}
 
-    \subsection{实验数据与误差分析}\label{subsec:19}
+    \subsection{实验数据}\label{subsec:19}
     \begin{figure*}[htb]
         \centering
         \subfloat[截止失真]{\includegraphics[height=120pt]{TD}}
@@ -202,7 +299,13 @@
     \subsection{注意事项}\label{subsec:20}
 
 
+    \vspace{1cm}
+
+
     \section{思考题}\label{sec:8}
+
+
+    \vspace{1cm}
 
 
     \section{实验总结}\label{sec:9}
