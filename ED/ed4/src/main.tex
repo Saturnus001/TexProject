@@ -38,7 +38,7 @@
 
     \section{实验原理}\label{sec:10}
     \begin{center}
-        \includegraphics[height=150pt]{AC}\\
+        \includegraphics[height=170pt]{AC}\\
         {\small 图一:共射极单管放大电路}
     \end{center}
 
@@ -60,7 +60,7 @@
 
     \subsection{实验原理}\label{subsec:2}
     \begin{center}
-        \includegraphics[height=150pt]{exp2}\\
+        \includegraphics[height=170pt]{exp2}\\
         {\small 图二:实验电路}
     \end{center}
 
@@ -100,9 +100,9 @@
             \hline
             \multicolumn{4}{|c|}{测量值} & \multicolumn{3}{|c|}{计算值} \\
             \hline
-            $U_B(V)$ & $U_E(V)$ & $U_C(V)$ & $R_{B2}(K\Omega)$ & $U_{BE}(V)$ & $U_{CE}(V)$ & $I_C(mA)$ \\
+            $U_B(V)$ & $U_E(V)$ & $U_C(V)$ & $R_{B2}(k\Omega)$ & $U_{BE}(V)$ & $U_{CE}(V)$ & $I_C(mA)$ \\
             \hline
-            3.008    & 2.403    & 7.147    & 65.42K            & 0.605       & 4.744       & 2.003     \\
+            3.008    & 2.403    & 7.147    & 65.42k            & 0.605       & 4.744       & 2.003     \\
             \hline
         \end{tabular}\label{tab:table2}
     \end{table}
@@ -124,7 +124,7 @@
     \end{equation}
 
     \subsection{实验内容}\label{subsec:6}
-    {{调节频率为$1KHz$的正弦波作为输入信号$u_i$。
+    {{调节频率为$1kHz$的正弦波作为输入信号$u_i$。
     同时用双踪示波器观察放大器输入电压$u_i$和输出电压$u_o$的波形，
     在$u_o$波形不失真的条件下，用毫伏表或者示波器测量开路和带载两种情况下$u_o$的有效值，
     并用双踪示波器观察$u_o$和$u_i$的相位关系。}}
@@ -136,7 +136,7 @@
         \caption{$I_c=2.0mA\quad U_i=10mV$(有效值)}
         \begin{tabular}{|c|c|c|c|}
             \hline
-            $R_C(K\Omega)$ & $R_L(K\Omega)$ & $U_o(V)$ & $A_u$ \\
+            $R_C(k\Omega)$ & $R_L(k\Omega)$ & $U_o(V)$ & $A_u$ \\
             \hline
             2.4            & 2.4            & 0.675    & 67.5  \\
             \hline
@@ -148,12 +148,12 @@
     {{观察记录的$u_o$和$u_i$波形如图三所示：}}
 
     \begin{center}
-        \includegraphics[height=100pt]{ref}\\
+        \includegraphics[height=130pt]{ref}\\
         {\small 图三:$u_o$和$u_i$的相位关系}
     \end{center}
 
     \subsection{注意事项}\label{subsec:8}
-    {{在测试 fH与 fL过程中要保持输入电压Ui不变。}}
+    {{在测试$f_H$与$f_L$过程中要保持输入电压$U_i$不变。}}
     {{当频率较高时，示波器已不是理想的测量设备，要把示波器从放大电路的输出端断开。}}
     \vspace{1cm}
 
@@ -164,6 +164,7 @@
     {{输入电阻：串联电阻法。在输入回路串联取样电阻$R$,
     直接测量取样电阻$R$两端的信号电压：$U_s$、$U_i$。
     根据输入电阻的定义可得：}}
+
     \begin{equation}
         R_i=\frac{U_i}{I_i}=\frac{U_i}{U_s-U_i}R\label{eq:equation4}
     \end{equation}
@@ -175,13 +176,14 @@
 
     \subsection{实验内容}\label{subsec:10}
     \begin{center}
-        \includegraphics[height=80pt]{R}\\
+        \includegraphics[height=125pt]{R}\\
         {\small 图四:实验电路}
     \end{center}
-    {{按图四接线，取$R=2K\Omega$,置$R_C=2.4K\Omega$、$R_L=2.4K\Omega$、$I_C=2.0mA$。
-    输入$f=1KHz$的正弦信号$u_s$，在输出电压$u_o$不失真的条件下，
-    用毫伏表或者示波器测量$U_s$、$U_i$，根据公式\ref{eq:equation4}求出$R_i$。}}
-    {{输出电阻$R_o$可根据公式\ref{eq:equation5}求出。}}
+
+    {{按图四接线，取$R=2k\Omega$,置$R_C=2.4k\Omega$、$R_L=2.4k\Omega$、$I_C=2.0mA$。
+    输入$f=1kHz$的正弦信号$u_s$，在输出电压$u_o$不失真的条件下，
+    用毫伏表或者示波器测量$U_s$、$U_i$，根据公式\eqref{eq:equation4}求出$R_i$。}}
+    {{输出电阻$R_o$可根据公式\eqref{eq:equation5}求出。}}
 
     \subsection{实验数据与误差分析}\label{subsec:11}
 
@@ -198,7 +200,7 @@
     其所对应的频率分别称为下截止频率$f_L$和上截止频率$f_H$，如图五所示，
     则$f_L$与$f_H$之间的范围就称为放大电路的通频带$BW$。}}
     \begin{center}
-        \includegraphics[height=120pt]{Af}\\
+        \includegraphics[height=130pt]{Af}\\
         {\small 图五:理想幅频特性曲线}
     \end{center}
 
@@ -208,8 +210,10 @@
     自作表格并记录之。}}
 
     \subsection{实验数据}\label{subsec:15}
+    {{实验数据记录如下表所示：}}
     \begin{table}[htbp]
         \centering
+        \caption{测量数据}
         \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}|l|l|l|l|l|l|l|l|}
             \hline
             f/Hz     & 200    & 250    & 269    & 270    & 271     & 280    & 300    \\
@@ -259,6 +263,7 @@
         \end{tabular*}\label{tab:table}
     \end{table}
 
+    {{根据上表中数据，用origin拟合图像得：}}
     \begin{center}
         \includegraphics[height=200pt]{Graph1}\\
         {\small 图六:实际幅频特性曲线}
@@ -283,8 +288,8 @@
     {{$I_{CQ}$正常，即工作点选在交流负载线的中心，当加大输入信号时，$u_o$同时出现饱和与截止失真。}}
 
     \subsection{实验内容}\label{subsec:18}
-    {{按图八接好实验电路，在$R_C=2.4K\Omega$、$R_L=+\infty$连线条件下，使$u_i=0$，调节$R_W$使$I_C=2.0mA$，测出$U_{CE}$值。
-    输入频率为$1KHz$的正弦波信号$u_i$，再逐步加大输入信号幅度，使输出电压$u_o$足够大但不失真。
+    {{按图八接好实验电路，在$R_C=2.4k\Omega$、$R_L=+\infty$连线条件下，使$u_i=0$，调节$R_W$使$I_C=2.0mA$，测出$U_{CE}$值。
+    输入频率为$1kHz$的正弦波信号$u_i$，再逐步加大输入信号幅度，使输出电压$u_o$足够大但不失真。
     然后保持输入信号不变，分别增大和减小$R_W$，使波形出现失真，绘出$u_o$的波形，并测出失真情况下的$I_C$和$U_{CE}$值，记录在表格中。}}
     \begin{center}
         \includegraphics[height=150pt]{exp5}\\
@@ -292,6 +297,24 @@
     \end{center}
 
     \subsection{实验数据}\label{subsec:19}
+    {{实验数据记录如下表所示：}}
+    \begin{table}[htbp]
+        \centering
+        \caption{$R_C=2.4k\Omega\quad R_L=\infty\quad U_i=21mV$}
+        \begin{tabular}{|c|c|c|c|c|c|}
+            \hline
+            $U_B(V)$ & $U_E(V)$ & $U_C(V)$ & $R_{B2}(\Omega)$ & 失真情况 & 管子工作状态 \\
+            \hline
+            2.039    & 1.531    & 9.031    & 107.95k          & 截止失真 & 截止区    \\
+            \hline
+            3.008    & 2.404    & 7.232    & 66.77k           & 不失真  & 放大区    \\
+            \hline
+            3.699    & 3.322    & 5.851    & 44.83k           & 饱和失真 & 饱和区    \\
+            \hline
+        \end{tabular}\label{tab:table4}
+    \end{table}
+
+    {{三种失真情况下的$u_o$波形如图九所示：}}
     \begin{figure*}[htb]
         \centering
         \subfloat[截止失真]{\includegraphics[height=110pt]{TD}}
@@ -301,15 +324,26 @@
     \end{figure*}
 
     \subsection{注意事项}\label{subsec:20}
-    {{每次测$I_C$和$U_{CE}$值时要使输入信号为零(即使$u_i=0$)}}
+    {{在记录静态工作点各测量值时，要使输入信号短路(即$u_i=0$)。}}
+    {{在记录电位器$R_W$值时，要使$R_W$与电路断开，没有电流流过。}}
     \vspace{1cm}
 
 
     \section{思考题}\label{sec:8}
+
+    \subsection{加入输入信号时，输出波形会出现哪几种失真?分别是什么原因引起的?}\label{subsec:q1}
+
+    \subsection{调整静态工作点时，$R_{B2}$是$10k$电阻与电位器$R_W$相串联，而不能直接用电位器，为什么?}\label{subsec:q2}
+
+    \subsection{对于本次的单管放大电路，实现放大的条件是?}\label{subsec:q3}
     \vspace{1cm}
 
 
     \section{实验总结}\label{sec:9}
+    {{本次实验学习了共射极单管放大器静态工作点的测量与调试方法， 实践了放大电路的交流特性等性能指标的测量方法，
+    加深了对放大器各种动态指标的理解，掌握了静态工作点与输出波形失真的关系。
+    促进了对单管放大器的理解，有利于线性电子线路课程的学习。}}
+    \vspace{1cm}
 
     \bibliography{main}
     \bibliographystyle{plain}
