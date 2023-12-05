@@ -45,7 +45,8 @@
 
 
     \section{实验仪器}\label{sec:2}
-    {{}}
+    \noindent{交流电压表，数字万用表，示波器，电路元件箱，信号发生器}
+
 
     \section{测量静态工作点}\label{sec:3}
 
@@ -54,6 +55,19 @@
         \includegraphics[height=150pt]{exp2}\\
         {\small 图二:实验电路}
     \end{center}
+    {{测量放大器的静态工作点，应在输入信号$U_i=0$的情况下进行，即将放大器输入端与地端短接，然后选用量程合适的数字万用表，分别测量晶体管的集电极电流$I_c$以及各电极对地的电位$U_B$、$U_C$和$U_E$。}}
+    {{一般实验中，为了避免断开集电极，所以采用测量电压，然后算出$I_C$的方法，例如，只要测出$U_E$，即可求出$I_C$}}
+    \begin{equation}
+        I_C\approx I_E=\frac{U_E}{R_E}\label{eq:equation}
+    \end{equation}
+
+    {{也可根据下式}}
+
+    \begin{equation}
+        I_C=\frac{V_{CC}-U_C}{R_C}\\
+        \mbox{同时可以得到:}U_{BE}=U_B-U_E\\
+        U_{CE}=U_C-U_E\label{eq:equation2}
+    \end{equation}
 
     \subsection{实验数据与误差分析}\label{subsec:3}
 
