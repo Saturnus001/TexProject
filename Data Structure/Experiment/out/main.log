@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.10.25)  17 DEC 2023 18:09
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.10.25)  17 DEC 2023 18:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -970,11 +970,8 @@ Package hyperref Info: Link coloring OFF on input line 27.
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
 LaTeX Font Info:    Trying to load font information for U+msa on input line 29.
+
 
 (d:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -984,41 +981,25 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 29.
 
 (d:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-
-LaTeX Warning: Citation `sec:appendix2' on page 1 undefined on input line 42.
-
-[1
+) [1
 
 ]
-Overfull \hbox (66.75139pt too wide) in paragraph at lines 95--98
+Overfull \hbox (66.75139pt too wide) in paragraph at lines 96--99
 []\TU/FZFangSong-Z02(0)/m/n/10.53937 输 入 数 据 从 给 出 的 测 试 文 件 中 读 取，|  读 取 \TU/l
 mr/m/n/10.53937 keyword.txt \TU/FZFangSong-Z02(0)/m/n/10.53937 文 件 生 成 哈 希 表，| 
  再 分 别 读 取 \TU/lmr/m/n/10.53937 main.c,similar.c,different.c
  []
 
 [2] [3] (F:/JetBrainsProj/TexProject/Data Structure/Experiment/out/main.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
-(rerunfilecheck)             After:  58D1BCFE6EEC356795662D631EB3571B;2357.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 58D1BCFE6EEC356795662D631EB3571B;2357.
  ) 
 Here is how much of TeX's memory you used:
- 17542 strings out of 476683
- 368692 string characters out of 5807574
+ 17546 strings out of 476683
+ 368695 string characters out of 5807574
  1857012 words of memory out of 5000000
- 37526 multiletter control sequences out of 15000+600000
- 528284 words of font info for 112 fonts, out of 8000000 for 9000
+ 37531 multiletter control sequences out of 15000+600000
+ 528276 words of font info for 111 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  89i,6n,97p,367b,337s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
