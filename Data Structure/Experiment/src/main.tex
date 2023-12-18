@@ -11,14 +11,18 @@
 \usepackage{graphicx,caption,subcaption}
 \usepackage{amsmath,amssymb,mathabx}
 \usepackage{multirow}
-\usepackage{hyperref}
 \usepackage{algorithm,algorithmicx,algpseudocode}
+\usepackage{hyperref}
 
 \graphicspath{{../figures/}}
+
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
 
 \title{\textbf{数据结构实验报告}}
 \author{姚苏航\qquad PB22061220}
 \date{}
+
 
 % Document
 \begin{document}
@@ -37,7 +41,7 @@
 
     \subsection{测试数据}\label{subsec:test}
     {{事先给出的file文件夹，包含关键词表和三份源程序文件，程序之间有相近的和差别大的。
-    文件内容详见附录\ref{sec:appendix2}。}}
+    文件内容详见附录~\ref{sec:appendix2}。}}
 
 
     \section{需求分析}\label{sec:need}
@@ -51,22 +55,22 @@
     \begin{equation}
         S(X_i,X_j)=\frac{X_i^T\cdot X_j}{|X_i|\cdot|X_j|}\label{eq:equation}
     \end{equation}
-    \noindent{\;\;\,\ 通过这种方式，可以初步判断两个源程序的相似性，如图\ref{fig:S}所示。
-    其中 S 反映了两向量的夹角的余弦，当 S 趋近于 1 时，
+    \noindent{\;\;\,\ 通过这种方式，可以初步判断两个源程序的相似性，
+    如图1所示。其中 S 反映了两向量的夹角的余弦，当 S 趋近于 1 时，
     两向量夹角趋于 0 ，即两向量趋于相似，反之亦然。}
     \begin{figure}[htbp]
         \centering
         \includegraphics[height=120pt]{S}
-        \caption{Similarity}\label{fig:S}
+        \caption{Similarity}\label{fig:figure}
     \end{figure}
 
     \noindent{3.在有些情况下，S 不能很好地反映两向量的相似性，还需要进一步的考虑。
-    例如，在 S 接近于 1 时，两向量的模的差距不能很好地被反映，如图\ref{fig:D}所示。
+    例如，在 S 接近于 1 时，两向量的模的差距不能很好地被反映，如图2所示。
     因此引入几何距离 D ，用于反应两向量终点间的距离。}
     \begin{figure}[htbp]
         \centering
         \includegraphics[height=120pt]{D}
-        \caption{Distance}\label{fig:D}
+        \caption{Distance}\label{fig:figure2}
     \end{figure}
 
     \noindent{4.通过分别比较很相近和差别很大的三个源代码，实践这种方法的有效性。}
@@ -77,6 +81,30 @@
     \subsection{所用到得数据结构及其ADT}\label{subsec:adt}
     \begin{algorithm}
         \caption{用归并排序求逆序数}
+        \begin{algorithmic}[1] %每行显示行号
+            \Require $Array$数组，$n$数组大小
+            \Ensure 逆序数
+            \Function {MergerSort}{$Array, left, right$}
+                \State $result \gets 0$
+                \If {$left < right$}
+                    \State $middle \gets (left + right) / 2$
+                    \State $result \gets result +$ \Call{MergerSort}{$Array, left, middle$}
+                    \State $result \gets result +$ \Call{MergerSort}{$Array, middle, right$}
+                    \State $result \gets result +$ \Call{Merger}{$Array,left,middle,right$}
+                \EndIf
+                \State \Return{$result$}
+            \EndFunction
+        \end{algorithmic}\label{alg:algorithm}
+    \end{algorithm}
+
+    \subsection{主程序流程及其模块调用关系}\label{subsec:relate}
+
+
+    \section{详细设计}\label{sec:design2}
+
+    \subsection{实现概要设计中的数据结构ADT}\label{subsec:adt2}
+    \begin{algorithm}
+        \caption{开散列哈希表}
         \begin{algorithmic}[1] %每行显示行号
             \Require $Array$数组，$n$数组大小
             \Ensure 逆序数
@@ -115,17 +143,8 @@
                 \EndFor
                 \State \Return{$result$}
             \EndFunction
-        \end{algorithmic}\label{alg:algorithm}
+        \end{algorithmic}\label{alg:algorithm2}
     \end{algorithm}
-
-    \subsection{主程序流程及其模块调用关系}\label{subsec:relate}
-
-    \subsection{核心模块的算法伪码}\label{subsec:code}
-
-
-    \section{详细设计}\label{sec:design2}
-
-    \subsection{实现概要设计中的数据结构ADT}\label{subsec:adt2}
 
     \subsection{实现每个操作的伪码，重点语句加注释}\label{subsec:explain}
 
