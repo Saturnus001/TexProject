@@ -13,8 +13,40 @@
 \usepackage{multirow}
 \usepackage{algorithm,algorithmicx,algpseudocode}
 \usepackage{hyperref}
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{xcolor}
 
 \graphicspath{{../figures/}}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{
+    backgroundcolor=\color{white},
+    basicstyle = \footnotesize,
+    breakatwhitespace = false,
+    breaklines = true,
+    captionpos = b,
+    commentstyle = \color{mygreen}\bfseries,
+    extendedchars = false,
+    frame =shadowbox,
+    framerule=0.5pt,
+    keepspaces=true,
+    keywordstyle=\color{blue}\bfseries, % keyword style
+    language = C++,                     % the language of code
+    otherkeywords={string},
+    numbers=left,
+    numbersep=5pt,
+    numberstyle=\tiny\color{mygray},
+    rulecolor=\color{black},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    stepnumber=1,
+    stringstyle=\color{mymauve},        % string literal style
+    tabsize=2,
+    title=\lstname
+}
 
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
@@ -82,8 +114,6 @@
     \begin{algorithm}
         \caption{用归并排序求逆序数}
         \begin{algorithmic}[1] %每行显示行号
-            \Require $Array$数组，$n$数组大小
-            \Ensure 逆序数
             \Function {MergerSort}{$Array, left, right$}
                 \State $result \gets 0$
                 \If {$left < right$}
@@ -103,48 +133,23 @@
     \section{详细设计}\label{sec:design2}
 
     \subsection{实现概要设计中的数据结构ADT}\label{subsec:adt2}
-    \begin{algorithm}
-        \caption{开散列哈希表}
-        \begin{algorithmic}[1] %每行显示行号
-            \Require $Array$数组，$n$数组大小
-            \Ensure 逆序数
-            \Function {MergerSort}{$Array, left, right$}
-                \State $result \gets 0$
-                \If {$left < right$}
-                    \State $middle \gets (left + right) / 2$
-                    \State $result \gets result +$ \Call{MergerSort}{$Array, left, middle$}
-                    \State $result \gets result +$ \Call{MergerSort}{$Array, middle, right$}
-                    \State $result \gets result +$ \Call{Merger}{$Array,left,middle,right$}
-                \EndIf
-                \State \Return{$result$}
-            \EndFunction
-            \State
-            \Function{Merger}{$Array, left, middle, right$}
-                \State $i\gets left$
-                \State $j\gets middle$
-                \State $k\gets 0$
-                \State $result \gets 0$
-                \While{$i<middle$ \textbf{and} $j<right$}
-                    \If{$Array[i]<Array[j]$}
-                        \State $B[k++]\gets Array[i++]$
-                    \Else
-                        \State $B[k++] \gets Array[j++]$
-                        \State $result \gets result + (middle - i)$
-                    \EndIf
-                \EndWhile
-                \While{$i<middle$}
-                    \State $B[k++] \gets Array[i++]$
-                \EndWhile
-                \While{$j<right$}
-                    \State $B[k++] \gets Array[j++]$
-                \EndWhile
-                \For{$i = 0 \to k-1$}
-                    \State $Array[left + i] \gets B[i]$
-                \EndFor
-                \State \Return{$result$}
-            \EndFunction
-        \end{algorithmic}\label{alg:algorithm2}
-    \end{algorithm}
+    \begin{lstlisting}[caption={},label={lst:lstlisting}]
+        typedef struct {
+            KeyType key;
+            Datatype Data;  // 记录关键字出现的次数
+        } ElemType;       // 包含关键字和数据
+
+        typedef struct LHNode {  // 哈希表结点
+            ElemType data;         // 查找表单元
+            LHNode *next;          // 后继
+        } *LHptr;
+
+        typedef struct {
+            LHptr *elem;
+            int count;   // 记录数
+        int size;    // 容量
+        } LHashTable;  // 链地址存储法
+    \end{lstlisting}
 
     \subsection{实现每个操作的伪码，重点语句加注释}\label{subsec:explain}
 
@@ -238,3 +243,47 @@
 
 
 \end{document}
+
+
+%    \begin{algorithm}
+%        \caption{开散列哈希表}
+%        \begin{algorithmic}[1] %每行显示行号
+%            \Require $Array$数组，$n$数组大小
+%            \Ensure 逆序数
+%            \Function {MergerSort}{$Array, left, right$}
+%                \State $result \gets 0$
+%                \If {$left < right$}
+%                    \State $middle \gets (left + right) / 2$
+%                    \State $result \gets result +$ \Call{MergerSort}{$Array, left, middle$}
+%                    \State $result \gets result +$ \Call{MergerSort}{$Array, middle, right$}
+%                    \State $result \gets result +$ \Call{Merger}{$Array,left,middle,right$}
+%                \EndIf
+%                \State \Return{$result$}
+%            \EndFunction
+%            \State
+%            \Function{Merger}{$Array, left, middle, right$}
+%                \State $i\gets left$
+%                \State $j\gets middle$
+%                \State $k\gets 0$
+%                \State $result \gets 0$
+%                \While{$i<middle$ \textbf{and} $j<right$}
+%                    \If{$Array[i]<Array[j]$}
+%                        \State $B[k++]\gets Array[i++]$
+%                    \Else
+%                        \State $B[k++] \gets Array[j++]$
+%                        \State $result \gets result + (middle - i)$
+%                    \EndIf
+%                \EndWhile
+%                \While{$i<middle$}
+%                    \State $B[k++] \gets Array[i++]$
+%                \EndWhile
+%                \While{$j<right$}
+%                    \State $B[k++] \gets Array[j++]$
+%                \EndWhile
+%                \For{$i = 0 \to k-1$}
+%                    \State $Array[left + i] \gets B[i]$
+%                \EndFor
+%                \State \Return{$result$}
+%            \EndFunction
+%        \end{algorithmic}\label{alg:algorithm2}
+%    \end{algorithm}
