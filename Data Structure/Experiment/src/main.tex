@@ -8,16 +8,9 @@
 \usepackage[margin=1in]{geometry}
 \usepackage[fontset=founder]{ctex}
 \usepackage{anyfontsize}
-
 \usepackage{graphicx,caption,subcaption}
-
 \usepackage{amsmath,amssymb,mathabx}
-
-\usepackage{algorithm,algorithmicx,algpseudocode,float}
-\usepackage{lipsum}
-
 \usepackage{multirow}
-
 \usepackage{hyperref}
 
 \graphicspath{{../figures/}}
@@ -25,25 +18,6 @@
 \title{\textbf{数据结构实验报告}}
 \author{姚苏航\qquad PB22061220}
 \date{}
-
-\newenvironment{breakablealgorithm}
-{% \begin{breakablealgorithm}
-    \begin{center}
-        \refstepcounter{algorithm}% New algorithm
-        \hrule height.8pt depth0pt \kern2pt% \@fs@pre for \@fs@ruled
-        \renewcommand{\caption}[2][\relax]{% Make a new \caption
-                {\raggedright\textbf{\ALG@name~\thealgorithm} ##2\par}%
-            \ifx\relax##1\relax % #1 is \relax
-            \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##2}%
-            \else % #1 is not \relax
-            \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##1}%
-            \fi
-            \kern2pt\hrule\kern2pt
-        }
-        }{% \end{breakablealgorithm}
-        \kern2pt\hrule\relax% \@fs@post for \@fs@ruled
-    \end{center}
-}
 
 % Document
 \begin{document}
@@ -100,33 +74,6 @@
     \section{概要设计}\label{sec:design1}
 
     \subsection{所用到得数据结构及其ADT}\label{subsec:adt}
-    \begin{algorithm}
-        %\textsl{}\setstretch{1.8}
-        \renewcommand{\algorithmicrequire}{\textbf{Input:}}
-        \renewcommand{\algorithmicensure}{\textbf{Output:}}
-        \caption{STVMD based on STFT}
-        \begin{algorithmic}[1]
-            \Input $n \geq 0 \vee x \neq 0$
-            \Output $y = x^n$
-            \STATE $y \gets 1$
-            \IF{$n < 0$}
-            \STATE $X \gets 1 / x$
-            \STATE $N \gets -n$
-            \ELSE
-            \STATE $X \gets x$
-            \STATE $N \gets n$
-            \ENDIF
-            \WHILE{$N \neq 0$}
-            \IF{$N$ is even}
-            \STATE $X \gets X \times X$
-            \STATE $N \gets N / 2$
-            \ELSE[$N$ is odd]
-            \STATE $y \gets y \times X$
-            \STATE $N \gets N - 1$
-            \ENDIF
-            \ENDWHILE
-        \end{algorithmic}\label{alg:algorithm}
-    \end{algorithm}
 
     \subsection{主程序流程及其模块调用关系}\label{subsec:relate}
 
