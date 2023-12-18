@@ -9,11 +9,11 @@
 \usepackage[fontset=founder]{ctex}
 \usepackage{anyfontsize}
 
-\usepackage{graphicx,caption}
+\usepackage{graphicx,caption,subcaption}
 
 \usepackage{amsmath,amssymb,mathabx}
 
-\usepackage{algorithm,algpseudocode,float}
+\usepackage{algorithm,algorithmicx,algpseudocode,float}
 \usepackage{lipsum}
 
 \usepackage{multirow}
@@ -75,22 +75,58 @@
     相似值的判别函数计算公式为:}
     \begin{equation}
         S(X_i,X_j)=\frac{X_i^T\cdot X_j}{|X_i|\cdot|X_j|}\label{eq:equation}
-    \end{equation}\\
-    \includegraphics[height=100pt]{S}
-
-    {通过这种方式，可以初步判断两个源程序的相似性，如图一所示。
+    \end{equation}
+    \noindent{\;\;\,\ 通过这种方式，可以初步判断两个源程序的相似性，如图\ref{fig:S}所示。
     其中 S 反映了两向量的夹角的余弦，当 S 趋近于 1 时，
     两向量夹角趋于 0 ，即两向量趋于相似，反之亦然。}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[height=120pt]{S}
+        \caption{Similarity}\label{fig:S}
+    \end{figure}
 
     \noindent{3.在有些情况下，S 不能很好地反映两向量的相似性，还需要进一步的考虑。
-    例如，在 S 接近于 1 时，两向量的模的差距不能很好地被反映如图二所示。因此引入几何距离 D }
+    例如，在 S 接近于 1 时，两向量的模的差距不能很好地被反映，如图\ref{fig:D}所示。
+    因此引入几何距离 D ，用于反应两向量终点间的距离。}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[height=120pt]{D}
+        \caption{Distance}\label{fig:D}
+    \end{figure}
 
-    \noindent{4.}
+    \noindent{4.通过分别比较很相近和差别很大的三个源代码，实践这种方法的有效性。}
 
 
     \section{概要设计}\label{sec:design1}
 
     \subsection{所用到得数据结构及其ADT}\label{subsec:adt}
+    \begin{algorithm}
+        %\textsl{}\setstretch{1.8}
+        \renewcommand{\algorithmicrequire}{\textbf{Input:}}
+        \renewcommand{\algorithmicensure}{\textbf{Output:}}
+        \caption{STVMD based on STFT}
+        \begin{algorithmic}[1]
+            \Input $n \geq 0 \vee x \neq 0$
+            \Output $y = x^n$
+            \STATE $y \gets 1$
+            \IF{$n < 0$}
+            \STATE $X \gets 1 / x$
+            \STATE $N \gets -n$
+            \ELSE
+            \STATE $X \gets x$
+            \STATE $N \gets n$
+            \ENDIF
+            \WHILE{$N \neq 0$}
+            \IF{$N$ is even}
+            \STATE $X \gets X \times X$
+            \STATE $N \gets N / 2$
+            \ELSE[$N$ is odd]
+            \STATE $y \gets y \times X$
+            \STATE $N \gets N - 1$
+            \ENDIF
+            \ENDWHILE
+        \end{algorithmic}\label{alg:algorithm}
+    \end{algorithm}
 
     \subsection{主程序流程及其模块调用关系}\label{subsec:relate}
 
