@@ -152,7 +152,23 @@
     \end{lstlisting}
 
     \subsection{实现每个操作的伪码，重点语句加注释}\label{subsec:explain}
+    \begin{lstlisting}[caption={},label={lst:lstlisting2}]
+        typedef struct {
+            KeyType key;
+            Datatype Data;  // 记录关键字出现的次数
+        } ElemType;       // 包含关键字和数据
 
+        typedef struct LHNode {  // 哈希表结点
+            ElemType data;         // 查找表单元
+            LHNode *next;          // 后继
+        } *LHptr;
+
+        typedef struct {
+            LHptr *elem;
+            int count;   // 记录数
+        int size;    // 容量
+        } LHashTable;  // 链地址存储法
+    \end{lstlisting}
     \subsection{主程序和其他模块的伪码}\label{subsec:code2}
 
 
