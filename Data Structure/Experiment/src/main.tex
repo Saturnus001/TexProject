@@ -6,20 +6,32 @@
 \documentclass[a4paper]{article}
 
 % Packages
+%基本格式
 \usepackage[margin=1in]{geometry}
 \usepackage[fontset=founder]{ctex}
 \usepackage{anyfontsize}
+\usepackage{float}
+%图片
 \usepackage{graphicx,caption,subcaption}
+%数学公式
 \usepackage{amsmath,amssymb,mathabx}
+%表格
 \usepackage{multirow}
+%算法
 \usepackage{algorithm,algorithmicx,algpseudocode}
+%引用
 \usepackage{hyperref}
+%插入代码
 \usepackage{listings}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{mathtools}
+%流程图
+\usepackage{tikz}
+\usetikzlibrary{positioning, shapes.geometric}
 
+%图片路径
 \graphicspath{{../figures/}}
-
+%插入代码配置
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
@@ -49,7 +61,7 @@
 	tabsize=2,
 	title=\lstname
 }
-
+%算法配置
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 
@@ -115,12 +127,49 @@
 	\subsection{所用到得数据结构及其ADT}\label{subsec:adt}
 
 	\subsection{主程序流程及其模块调用关系}\label{subsec:relate}
+	\begin{tikzpicture}
+		\node[draw, rounded corners](system){system};
+		\node[draw, rounded corners,below=5pt of system](start){start};
+		\node[draw, below=of start](CH){CreateHash//创建哈希表};
+		\node[draw, below=of CH](V){CreateEigenvector};
+		\node[draw, below=of V](S){SAsses//计算相似度};
+		\node[draw, below=of S](D){DAsses//计算几何距离};
+		\node[draw, rounded corners, below=20pt of D](end){End};
+
+		\draw[->] (start)  -- (CH);
+		\draw[->] (CH) -- (V);
+		\draw[->] (V) -- (S);
+		\draw[->] (S) -- (D);
+		\draw[->] (D) -- (end);
+
+
+		\node[draw, rounded corners,right=120pt of system](CV){CreateEigenvector};
+		\node[draw, rounded corners,below=5pt of CV](start1){start};
+		\node[draw, ellipse,below=of start1](L){While};
+		\node[left =50pt of L](temp){};
+		\node[draw, diamond, aspect=2, below=of L](eof){!fin.eof()};
+		\node[draw, below=of eof](RW){ReadWord//读取单词};
+		\node[draw, below=of RW](SH){SearchHash//查找表};
+		\node[left =23pt of SH](temp1){};
+		\node[draw, right=45pt of eof](EV){Eigenvector//得到特征向量};
+		\node[draw, rounded corners, below=20pt of EV](end1){End};
+
+		\draw[->] (start1)  -- (L);
+		\draw[->] (L)  -- (eof);
+		\draw[->] (eof) -- node[left]  {Yes} (RW);
+		\draw[->] (RW)  -- (SH);
+		\draw[->] (SH)  --(temp|-SH)--(temp)--(L);
+		\draw[->] (SH)  --(temp1)--(temp1|-L)--(L);
+		\draw[->] (eof) -- node[above] {No}  (EV);
+		\draw[->] (EV) -- (end1);
+
+	\end{tikzpicture}
 
 
 	\section{详细设计}\label{sec:design2}
 
 	\subsection{实现概要设计中的数据结构ADT}\label{subsec:adt2}
-	\begin{lstlisting}[caption={},label={lst:lstlisting}]
+	\begin{lstlisting}[caption={},label={lst:lstlisting}][H]
         typedef struct {
             KeyType key;
             Datatype Data;  // 记录关键字出现的次数
@@ -141,7 +190,7 @@
 	\subsection{实现每个操作的伪码，重点语句加注释}\label{subsec:explain}
 
 	\subsubsection{哈希表的创建与查找}
-	\begin{algorithm}
+	\begin{algorithm}[H]
 		\caption{创建哈希表}
 		\begin{algorithmic}[1] %每行显示行号
 			\Function {CreateHash}{$LHashTable\ \&H$}
@@ -173,11 +222,9 @@
 				\EndFor
 				\For {$each\ i\ in\ [1,17]$}
 					\State $n \gets  Hash(keyword[i])$;
-					\State $p \gets  new\ LHNode;$
-					\State $p->next \gets  nullptr;$
-					\State $p->data.Data \gets  0;$\Comment{计数}
-					\State $p->data.key \gets  new\ char[10];$
-					\State $p->data.key \gets keyword[i]$
+					\State $p \gets  new\ LHNode;p->data.key \gets  new\ char[10];$\Comment{分配空间}
+					\State $p->next \gets  nullptr;p->data.Data \gets  0;$\Comment{计数}
+					\State $p->data.key \gets keyword[i]$\Comment{记录key值}
 					\If{!$H.elem[n]->next$}
 						\State $H.elem[n]->next \gets  p$;
 					\Else
@@ -190,14 +237,14 @@
 		\end{algorithmic}\label{alg:algorithm}
 	\end{algorithm}
 
-	\begin{algorithm}
+	\begin{algorithm}[H]
 		\caption{查找哈希表}
 		\begin{algorithmic}[1] %每行显示行号
 			\Function {SearchHash}{$LHashTable\ H, int\ n, KeyType\ key$}
 				\State $p \gets H.elem[n]->next$;
 				\While{$p$}
 					\If{!strcmp(key, p->data.key)}
-						/Comment{等于则返回0}
+						\Comment{等于则返回0}
 						\State $p->data.Data++$;
 						\State break;
 					\EndIf
@@ -208,14 +255,57 @@
 	\end{algorithm}
 
 	\subsubsection{向量的生成与运算}
-	\begin{algorithm}
+	\begin{algorithm}[H]
 		\caption{读取文件生成向量}
 		\begin{algorithmic}[1] %每行显示行号
 			\Function {CreateEigenvector}{$LHashTable\ H, int\ X[], const\ string\&\ FileAddress$}
-				\State $InitHash();$/Comment{初始化哈希表}
-
+				\State $InitHash()$;\Comment{初始化哈希表}
+				\While{$!fin.eof()$}
+					\State $ReadWord()$;\Comment{读取单词};
+					\State $n \gets Hash()$;\Comment{计算哈希值};
+					\State $SearchHash()$;\Comment{搜索哈希表};
+				\EndWhile
+				\For{$each\ i\ in\ [0,43)]$}
+					\State $p \gets H.elem[i]->next$;
+					\While{$p$}
+						\State $X[j++] \gets p->data.Data$;\Comment{用哈希表的记录生成特征向量}
+						\State $p \gets p->next$;
+					\EndWhile
+				\EndFor
+				\State $fin.close()$;
 			\EndFunction
 		\end{algorithmic}\label{alg:algorithm3}
+	\end{algorithm}
+
+	\begin{algorithm}[H]
+		\caption{计算几何距离}
+		\begin{algorithmic}[1] %每行显示行号
+			\Function {DAsses}{$const\ int\ X1[],\ const\ int\ X2[]$}
+				\State $k,i,m \gets 0$;
+				\For{$each\ i\ in\ [0,16)$}
+					\State $m += (X1[i] - X2[i]) * (X1[i] - X2[i]);$;\Comment{计算X1和X2的差}
+				\EndFor
+				\State $k = sqrt(m)$;\Comment{计算几何距离D}
+				\Return $k$;
+			\EndFunction
+		\end{algorithmic}\label{alg:algorithm4}
+	\end{algorithm}
+
+	\begin{algorithm}[H]
+		\caption{计算相似度}
+		\begin{algorithmic}[1] %每行显示行号
+			\Function {SAsses}{$const\ int\ X1[],\ const\ int\ X2[]$}
+				\State $n1,n2,i,m \gets 0$;
+				\For{$each\ i\ in\ [0,16)$}
+					\State $m += X1[i] * X2[i]$;\Comment{计算X1和X2的点积}
+					\State $n1 += X1[i] * X1[i]$;
+					\State $n2 += X2[i] * X2[i]$;
+				\EndFor
+				\State $n1 = sqrt(n1)$;\Comment{计算X1的模}
+				\State $n2 = sqrt(n2)$;\Comment{计算X2的模}\\
+				\Return $m /= n1 * n2$;\Comment{返回相似度S}
+			\EndFunction
+		\end{algorithmic}\label{alg:algorithm5}
 	\end{algorithm}
 
 	\subsection{主程序和其他模块的伪码}\label{subsec:code2}
