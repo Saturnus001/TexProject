@@ -1,0 +1,40 @@
+\subsection{所用到得数据结构及其ADT}\label{subsec:adt}
+
+\subsection{主程序流程及其模块调用关系}\label{subsec:relate}
+\begin{tikzpicture}
+	\node[draw, rounded corners](system){system};
+	\node[draw, rounded corners,below=5pt of system](start){start};
+	\node[draw, below=of start](CH){CreateHash//创建哈希表};
+	\node[draw, below=of CH](V){CreateEigenvector};
+	\node[draw, below=of V](S){SAsses//计算相似度};
+	\node[draw, below=of S](D){DAsses//计算几何距离};
+	\node[draw, rounded corners, below=20pt of D](end){End};
+
+	\draw[->] (start)  -- (CH);
+	\draw[->] (CH) -- (V);
+	\draw[->] (V) -- (S);
+	\draw[->] (S) -- (D);
+	\draw[->] (D) -- (end);
+
+
+	\node[draw, rounded corners,right=120pt of system](CV){CreateEigenvector};
+	\node[draw, rounded corners,below=5pt of CV](start1){start};
+	\node[draw, ellipse,below=of start1](L){While};
+	\node[left =50pt of L](temp){};
+	\node[draw, diamond, aspect=2, below=of L](eof){!fin.eof()};
+	\node[draw, below=of eof](RW){ReadWord//读取单词};
+	\node[draw, below=of RW](SH){SearchHash//查找表};
+	\node[left =23pt of SH](temp1){};
+	\node[draw, right=45pt of eof](EV){Eigenvector//得到特征向量};
+	\node[draw, rounded corners, below=20pt of EV](end1){End};
+
+	\draw[->] (start1)  -- (L);
+	\draw[->] (L)  -- (eof);
+	\draw[->] (eof) -- node[left]  {Yes} (RW);
+	\draw[->] (RW)  -- (SH);
+	\draw[->] (SH)  --(temp|-SH)--(temp)--(L);
+	\draw[->] (SH)  --(temp1)--(temp1|-L)--(L);
+	\draw[->] (eof) -- node[above] {No}  (EV);
+	\draw[->] (EV) -- (end1);
+
+\end{tikzpicture}

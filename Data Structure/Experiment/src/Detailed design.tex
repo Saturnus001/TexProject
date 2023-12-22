@@ -1,0 +1,156 @@
+\subsection{实现概要设计中的数据结构ADT}\label{subsec:adt2}
+\begin{lstlisting}[caption={},label={lst:lstlisting}][H]
+       typedef struct {
+         KeyType key;
+         Datatype Data;  // 记录关键字出现的次数
+       } ElemType;       // 包含关键字和数据
+
+       typedef struct LHNode {  // 哈希表结点
+         ElemType data;         // 查找表单元
+         LHNode *next;          // 后继
+       } *LHptr;
+
+       typedef struct {
+         LHptr *elem;
+         int count;   // 记录数
+         int size;    // 容量
+       } LHashTable;  // 链地址存储法
+\end{lstlisting}
+
+\subsection{实现每个操作的伪码，重点语句加注释}\label{subsec:explain}
+
+\subsubsection{哈希表的创建与查找}
+\begin{algorithm}[H]
+	\caption{创建哈希表}
+	\begin{algorithmic}[1] %每行显示行号
+		\Function {CreateHash}{$LHashTable\ \&H$}
+			\State $ifstream fin(“../file/keywords.txt”, ios \dblcolon in)$;
+			\State $keyword[0] \gets new\ char[30]$;
+			\For{$each\ i\ in\ [1,22]$}
+				\State $keyword[i] \gets new\ char[10]$;\Comment{为每个节点分配空间}
+			\EndFor
+
+			\State $fin.get(keyword[0], 26)$;\Comment{将无用内容读入keyword[0],关键字从1开始存储}
+			\State $i\gets 1$,$j\gets 0$;
+			\While{$!fin.eof()$}
+				\State $fin.get(ch)$;
+				\If{$ch >= 97 \&\& ch <= 122$}
+					\Comment{判断是否为需要读取的关键词}
+					\State $keyword[i][j] \gets  ch$;\Comment{读取关键词}
+					\State $j++$;
+				\Else
+					\State $keyword[i][j] \gets '\backslash 0'$;
+					\State $j \gets  0$,$i++$;\Comment{为读取下一个关键词做准备}
+				\EndIf
+			\EndWhile
+
+			\State $H.size \gets  43;H.count \gets  0$
+			\State $H.elem \gets  new\ LHptr[H.size]$\Comment{初始化为所有结点指针的头指针}
+			\For{$each\ i\ in\ [0,H.size-1]$}
+				\State $H.elem[i] \gets  new\ LHNode;$ \Comment{为单个结点分配空间}
+				\State $H.elem[i]->next \gets  nullptr;$
+			\EndFor
+			\For {$each\ i\ in\ [1,17]$}
+				\State $n \gets  Hash(keyword[i])$;
+				\State $p \gets  new\ LHNode;p->data.key \gets  new\ char[10];$\Comment{分配空间}
+				\State $p->next \gets  nullptr;p->data.Data \gets  0;$\Comment{计数}
+				\State $p->data.key \gets keyword[i]$\Comment{记录key值}
+				\If{!$H.elem[n]->next$}
+					\State $H.elem[n]->next \gets  p$;
+				\Else
+					\State $p->next \gets  H.elem[n]->next$;
+					\State $H.elem[n]->next \gets  p$;
+				\EndIf
+			\EndFor
+			\State $fin.close();$
+		\EndFunction
+	\end{algorithmic}\label{alg:algorithm}
+\end{algorithm}
+
+\begin{algorithm}[H]
+	\caption{查找哈希表}
+	\begin{algorithmic}[1] %每行显示行号
+		\Function {SearchHash}{$LHashTable\ H, int\ n, KeyType\ key$}
+			\State $p \gets H.elem[n]->next$;
+			\While{$p$}
+				\If{!strcmp(key, p->data.key)}
+					\Comment{等于则返回0}
+					\State $p->data.Data++$;
+					\State break;
+				\EndIf
+				\State $p \gets p->next$;
+			\EndWhile
+		\EndFunction
+	\end{algorithmic}\label{alg:algorithm2}
+\end{algorithm}
+
+\subsubsection{向量的生成与运算}
+\begin{algorithm}[H]
+	\caption{读取文件生成向量}
+	\begin{algorithmic}[1] %每行显示行号
+		\Function {CreateEigenvector}{$LHashTable\ H, int\ X[], const\ string\&\ FileAddress$}
+			\State $InitHash()$;\Comment{初始化哈希表}
+			\While{$!fin.eof()$}
+				\State $ReadWord()$;\Comment{读取单词};
+				\State $n \gets Hash()$;\Comment{计算哈希值};
+				\State $SearchHash()$;\Comment{搜索哈希表};
+			\EndWhile
+			\For{$each\ i\ in\ [0,43)]$}
+				\State $p \gets H.elem[i]->next$;
+				\While{$p$}
+					\State $X[j++] \gets p->data.Data$;\Comment{用哈希表的记录生成特征向量}
+					\State $p \gets p->next$;
+				\EndWhile
+			\EndFor
+			\State $fin.close()$;
+		\EndFunction
+	\end{algorithmic}\label{alg:algorithm3}
+\end{algorithm}
+
+\begin{algorithm}[H]
+	\caption{计算几何距离}
+	\begin{algorithmic}[1] %每行显示行号
+		\Function {DAsses}{$const\ int\ X1[],\ const\ int\ X2[]$}
+			\State $k,i,m \gets 0$;
+			\For{$each\ i\ in\ [0,16)$}
+				\State $m += (X1[i] - X2[i]) * (X1[i] - X2[i]);$;\Comment{计算X1和X2的差}
+			\EndFor
+			\State $k = sqrt(m)$;\Comment{计算几何距离D}
+			\Return $k$;
+		\EndFunction
+	\end{algorithmic}\label{alg:algorithm4}
+\end{algorithm}
+
+\begin{algorithm}[H]
+	\caption{计算相似度}
+	\begin{algorithmic}[1] %每行显示行号
+		\Function {SAsses}{$const\ int\ X1[],\ const\ int\ X2[]$}
+			\State $n1,n2,i,m \gets 0$;
+			\For{$each\ i\ in\ [0,16)$}
+				\State $m += X1[i] * X2[i]$;\Comment{计算X1和X2的点积}
+				\State $n1 += X1[i] * X1[i]$;
+				\State $n2 += X2[i] * X2[i]$;
+			\EndFor
+			\State $n1 = sqrt(n1)$;\Comment{计算X1的模}
+			\State $n2 = sqrt(n2)$;\Comment{计算X2的模}\\
+			\Return $m /= n1 * n2$;\Comment{返回相似度S}
+		\EndFunction
+	\end{algorithmic}\label{alg:algorithm5}
+\end{algorithm}
+
+\subsection{主程序和其他模块的伪码}\label{subsec:code2}
+\begin{algorithm}[H]
+	\caption{判断相似性}
+	\begin{algorithmic}[1] %每行显示行号
+		\Function {system}{$void$}
+			\State $CreateHash(H)$;\Comment{根据给定关键词创建哈希表}
+			\State $CreateEigenvector(H, SimVec, "../file/similar.c")$;\Comment{读取程序生成特征向量}
+			\State $CreateEigenvector(H, DifVec, "../file/different.c")$;
+			\State $CreateEigenvector(H, MainVec, "../file/main.c")$;
+			\State $Similarity \gets SAsses(SimVec, MainVec)$;\Comment{计算相似度S和几何距离D}
+			\State $Distance \gets DAsses(SimVec, MainVec)$;
+			\State $Similarity \gets SAsses(DifVec, MainVec)$;
+			\State $Distance \gets DAsses(DifVec, MainVec)$;
+		\EndFunction
+	\end{algorithmic}\label{alg:algorithm6}
+\end{algorithm}
