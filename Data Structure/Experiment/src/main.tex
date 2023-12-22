@@ -309,6 +309,21 @@
 	\end{algorithm}
 
 	\subsection{主程序和其他模块的伪码}\label{subsec:code2}
+	\begin{algorithm}[H]
+		\caption{判断相似性}
+		\begin{algorithmic}[1] %每行显示行号
+			\Function {system}{$void$}
+				\State $CreateHash(H)$;\Comment{根据给定关键词创建哈希表}
+				\State $CreateEigenvector(H, SimVec, "../file/similar.c")$;\Comment{读取程序生成特征向量}
+				\State $CreateEigenvector(H, DifVec, "../file/different.c")$;
+				\State $CreateEigenvector(H, MainVec, "../file/main.c")$;
+				\State $Similarity \gets SAsses(SimVec, MainVec)$;\Comment{计算相似度S和几何距离D}
+				\State $Distance \gets DAsses(SimVec, MainVec)$;
+				\State $Similarity \gets SAsses(DifVec, MainVec)$;
+				\State $Distance \gets DAsses(DifVec, MainVec)$;
+			\EndFunction
+		\end{algorithmic}\label{alg:algorithm6}
+	\end{algorithm}
 
 
 	\section{调试分析}\label{sec:debug}
