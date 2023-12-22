@@ -36,41 +36,35 @@
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 \lstset{
-	language = C++,% 设置语言
-	backgroundcolor=\color{white},
-	basicstyle=\ttfamily, % 设置字体族
-	basicstyle=\footnotesize,% 设置字体大小
-	breaklines=true, % 自动换行
+	\lstset{
+		language=C++, % 设置语言
+		basicstyle=\ttfamily, % 设置字体族
+		breaklines=true, % 自动换行
+		keywordstyle=\bfseries\color{NavyBlue}, % 设置关键字为粗体，颜色为 NavyBlue
+		morekeywords={}, % 设置更多的关键字，用逗号分隔
+		emph={self}, % 指定强调词，如果有多个，用逗号隔开
+		emphstyle=\bfseries\color{Rhodamine}, % 强调词样式设置
+		commentstyle=\itshape\color{black!50!white}, % 设置注释样式，斜体，浅灰色
+		stringstyle=\bfseries\color{PineGreen!90!black}, % 设置字符串样式
+		columns=flexible,
+		numbers=left, % 显示行号在左边
+		numbersep=2em, % 设置行号的具体位置
+		numberstyle=\footnotesize, % 缩小行号
+		frame=single, % 边框
+		framesep=1em % 设置代码与边框的距离
+	}
 
-
-
-	keywordstyle=\bfseries\color{NavyBlue}, % 设置关键字为粗体，颜色为 NavyBlue
-	morekeywords={string}, % 设置更多的关键字，用逗号分隔
-	emph={self}, % 指定强调词，如果有多个，用逗号隔开
-	emphstyle=\bfseries\color{Rhodamine}, % 强调词样式设置
-
-	commentstyle=\itshape\color{black!50!white}, % 设置注释样式，斜体，浅灰色
-	stringstyle=\bfseries\color{PineGreen!90!black}, % 设置字符串样式
-
-	frame=single, % 边框
-	framesep=1em % 设置代码与边框的距离
-
-	columns=flexible,
-	numbers=left, % 显示行号在左边
-	numbersep=2em, % 设置行号的具体位置
-	numberstyle=\footnotesize, % 缩小行号
-
-	breakatwhitespace = false,
-	captionpos = b,
-	extendedchars = false,
-	keepspaces=true,
-	rulecolor=\color{black},
-	showspaces=false,
-	showstringspaces=false,
-	showtabs=false,
-	stepnumber=1,
-	tabsize=2,
-	title=\lstname
+%	breakatwhitespace = false,
+%	captionpos = b,
+%	extendedchars = false,
+%	keepspaces=true,
+%	rulecolor=\color{black},
+%	showspaces=false,
+%	showstringspaces=false,
+%	showtabs=false,
+%	stepnumber=1,
+%	tabsize=2,
+%	title=\lstname
 }
 
 %算法配置
