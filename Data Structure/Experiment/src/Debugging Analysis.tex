@@ -19,3 +19,20 @@
 它不仅加深了我对哈希表的认识，了解了哈希表在查重方面的应用，还提高了自己代码的编写能力，能够更好更快地写出容易理解且便于调试的代码。}}
 
 \subsection{时空复杂度分析}\label{subsec:analysis2}
+\subsubsection{时间复杂度}
+{{在初始化部分，由于哈希表通过散列函数查找元素的性质，哈希表的创建和查找操作的时间复杂度均为$O(1)$。
+在特征向量的运算部分，由于每次运算需要遍历向量的每个元素，时间复杂度为$O(n)$。}}
+
+\subsubsection{空间复杂度}
+{{在本实验中,哈希表的空间复杂度为$O(n)$}}
+
+\subsubsection{平均查找长度}
+{{由计算得，成功时平均查找长度：}}
+\begin{equation}
+	ASL=\frac{1\times13+2\times2+3\times1+4\times1}{17}\approx1.4<2\label{eq:equation2}
+\end{equation}\\
+{{而失败时，平均查找长度：}}
+\begin{equation}
+	ASL=\frac{1\times11+4\times1+2\times1}{43}\approx0.40<2\label{eq:equation3}
+\end{equation}\\
+{{符合平均查找长度小于2的要求。}}
